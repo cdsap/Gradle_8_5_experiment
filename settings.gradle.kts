@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.SettingsExtension
+
 /*
  * Copyright 2021 The Android Open Source Project
  *
@@ -33,6 +35,7 @@ dependencyResolutionManagement {
 plugins {
     id("com.gradle.common-custom-user-data-gradle-plugin") version "1.8.1"
     id("com.gradle.enterprise") version "3.15.1"
+    id("com.android.settings") version "8.1.3"
 }
 
 gradleEnterprise {
@@ -78,3 +81,22 @@ include(":lint")
 include(":sync:work")
 include(":sync:sync-test")
 include(":ui-test-hilt-manifest")
+
+
+configure<SettingsExtension>() {
+    execution {
+        profiles {
+            create("high") {
+                r8 {
+                    jvmOptions += listOf(
+                        "-Xms2048m",
+                        "-Xmx4096m",
+                        "-XX:+HeapDumpOnOutOfMemoryError",
+                    )
+                    runInSeparateProcess = true
+                }
+            }
+        }
+        defaultProfile = "high"
+    }
+}
