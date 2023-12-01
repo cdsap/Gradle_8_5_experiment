@@ -92,6 +92,7 @@ configure<SettingsExtension>() {
                         "-Xms2048m",
                         "-Xmx4096m",
                         "-XX:+HeapDumpOnOutOfMemoryError",
+                        "-XX:+UseParallelGC"
                     )
                     runInSeparateProcess = true
                 }
