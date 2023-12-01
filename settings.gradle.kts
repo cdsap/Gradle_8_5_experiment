@@ -90,7 +90,7 @@ configure<SettingsExtension>() {
                 r8 {
                     jvmOptions += listOf(
                         "-Xms2048m",
-                        "-Xmx4096m",
+                        "-Xmx2048m",
                         "-XX:+HeapDumpOnOutOfMemoryError",
                         "-XX:+UseParallelGC"
                     )
